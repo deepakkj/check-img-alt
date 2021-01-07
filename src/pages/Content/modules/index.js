@@ -3,15 +3,19 @@ import { render } from 'react-dom';
 // import './index.css';
 import SideBar from '../components/SideBar/SideBar';
 
-const renderInspirationalSpaces = () => {
-  if(!window.document.getElementById('app-container')) {
+const mountApp = () => {
+  if (!window.document.getElementById('app-container')) {
     var testEle = document.createElement('div');
-    testEle.setAttribute("id", "app-container");
+    testEle.setAttribute('id', 'app-container');
     window.document.body.appendChild(testEle);
   }
-  console.log("-------");
+  console.log('>>>>>> mounting and rendering app on the DOM >>>>>>');
   render(<SideBar />, window.document.getElementById('app-container'));
-  // render(<Routes />, document.getElementById('lighthouse_edp_inspirational_spaces'));
 };
 
-export default renderInspirationalSpaces;
+const unmountApp = () => {
+  console.log('>>>>>> unmounting app from the DOM >>>>>>');
+  window.document.getElementById('app-container').remove();
+};
+
+export { unmountApp, mountApp };

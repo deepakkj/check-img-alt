@@ -2,10 +2,9 @@
   "name": "Missing Alt Tag Chrome Extension",
   "options_page": "options.html",
   "background": {
-    "page": "background.html"
+    "scripts": ["background.bundle.js"]
   },
   "browser_action": {
-    "default_popup": "popup.html",
     "default_icon": "icon-34.png"
   },
   "icons": {
@@ -17,7 +16,8 @@
     "css": ["content.styles.css"]
   }],
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "web_accessible_resources": [
     "content.styles.css",

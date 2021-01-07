@@ -1,11 +1,9 @@
 import React from 'react';
 import './ImageList.css';
 
-const ImageList = ({
-  images
-}) => {
+const ImageList = ({ images }) => {
   const getImgsWithAltTag = (imgEle) => {
-    return (imgEle.attributes['alt'] && imgEle.attributes['alt'].value);
+    return imgEle.attributes['alt'] && imgEle.attributes['alt'].value;
   };
 
   const getImgsWithoutAltTag = (imgEle) => {
@@ -16,11 +14,18 @@ const ImageList = ({
   return (
     <ul className="imgList">
       Total images (with img tag): {images.length}
-        Total images (with alt tag): {imgsWithAltTag.length}
-        Total images (without alt tag): {imgsWithoutAltTag.length}
-      {
-        imgsWithoutAltTag.map(image => <li className="div-img-wrapper"><img src={image.attributes['src'].value} data-extensionTag={"extensionTag"} /></li>)
-      }
+      Total images (with alt tag): {imgsWithAltTag.length}
+      Total images (without alt tag): {imgsWithoutAltTag.length}
+      {imgsWithoutAltTag.map((image, index) => (
+        <li className="div-img-wrapper">
+          <img
+            key={index}
+            alt={index}
+            src={image.attributes['src'].value}
+            data-extensionTag={'extensionTag'}
+          />
+        </li>
+      ))}
     </ul>
   );
 };
