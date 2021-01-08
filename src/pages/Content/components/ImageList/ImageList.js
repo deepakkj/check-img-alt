@@ -1,29 +1,15 @@
 import React from 'react';
 import './ImageList.css';
+import ImageIcon from '../ImageIcon';
 
 const ImageList = ({ images }) => {
-  const getImgsWithAltTag = (imgEle) => {
-    return imgEle.attributes['alt'] && imgEle.attributes['alt'].value;
-  };
 
-  const getImgsWithoutAltTag = (imgEle) => {
-    return !(imgEle.attributes['alt'] && imgEle.attributes['alt'].value);
-  };
-  const imgsWithAltTag = images.filter(getImgsWithAltTag);
-  const imgsWithoutAltTag = images.filter(getImgsWithoutAltTag);
   return (
     <ul className="imgList">
       Total images (with img tag): {images.length}
-      Total images (with alt tag): {imgsWithAltTag.length}
-      Total images (without alt tag): {imgsWithoutAltTag.length}
-      {imgsWithoutAltTag.map((image, index) => (
-        <li className="div-img-wrapper">
-          <img
-            key={index}
-            alt={index}
-            src={image.attributes['src'].value}
-            data-extensionTag={'extensionTag'}
-          />
+      {images.map((image, index) => (
+        <li className="div-img-wrapper" key={index}>
+          <ImageIcon key={index} imageEle={image} />
         </li>
       ))}
     </ul>

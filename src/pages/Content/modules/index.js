@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 // import './index.css';
-import SideBar from '../components/SideBar/SideBar';
+import App from '../components/App';
 
 const mountApp = () => {
   if (!window.document.getElementById('app-container')) {
@@ -10,12 +10,14 @@ const mountApp = () => {
     window.document.body.appendChild(testEle);
   }
   console.log('>>>>>> mounting and rendering app on the DOM >>>>>>');
-  render(<SideBar />, window.document.getElementById('app-container'));
+  render(<App />, window.document.getElementById('app-container'));
 };
 
 const unmountApp = () => {
   console.log('>>>>>> unmounting app from the DOM >>>>>>');
-  window.document.getElementById('app-container').remove();
+  if(window.document.getElementById('app-container')) {
+    window.document.getElementById('app-container').remove();
+  }
 };
 
 export { unmountApp, mountApp };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './SideBar.css';
+import './SideBar.scss';
 
+import Header from '../Header/Header';
 import ImageList from '../ImageList/ImageList';
 
 const SideBar = () => {
@@ -8,7 +9,7 @@ const SideBar = () => {
   console.log('rendering sideBar >>>>>>>>>>>>>>>');
 
   const getImgsWithoutCurrentExtension = (imgEle) => {
-    return !(imgEle.getAttribute('data-extensionTag') === 'extensionTag');
+    return !(imgEle.getAttribute('data-extensiontag') === 'extensiontag');
   };
 
   const getAllImgNodesInPage = () => {
@@ -21,15 +22,38 @@ const SideBar = () => {
     setImages(imageEles);
   };
 
+  const getImgsWithAltTag = (imgEle) => {
+    return imgEle.getAttribute('alt');
+  };
+
+  const getImgsWithoutAltTag = (imgEle) => {
+    return !imgEle.getAttribute('alt');
+  };
+  const imgsWithAltTag = images.filter(getImgsWithAltTag) || [];
+  const imgsWithoutAltTag = images.filter(getImgsWithoutAltTag) || [];
+
   const onRefresh = (e) => {
     e.stopPropagation();
     updateImageList();
   };
+  const onMove = (e) => {
+    e.stopPropagation();
+  };
+
+  const onClose = (e) => {
+    e.stopPropagation();
+  };
 
   return (
     <div className="sideBar">
-      <button onClick={onRefresh}>Refresh</button>
-      <ImageList images={images} />
+      <Header
+        onRefresh={onRefresh}
+        onClose={onClose}
+        onMove={onMove}
+        noOfImgsWithAltTag={imgsWithAltTag.length}
+        noOfImgsWithoutAltTag={imgsWithoutAltTag.length}
+      />
+      <ImageList images={imgsWithoutAltTag} />
     </div>
   );
 };
