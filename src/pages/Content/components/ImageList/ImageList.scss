@@ -10,7 +10,7 @@
   .div-img-wrapper {
     display: flex;
     flex-grow: 1;
-    flex-shrink: 0;
+    // flex-shrink: 0;
     // flex-basis: 50%;
     width: 100%;
     padding: 10px;
@@ -23,6 +23,8 @@
         font-size: 14px;
         line-height: 20px;
         text-align: left;
+        margin: 0;
+        padding: 0;
         color: inherit;
         span {
           text-decoration: underline;
