@@ -22,7 +22,7 @@ export const getSrcUrlFromSourceTagOfSiblingImage = (imgEle) => {
   if (checkIfImageHasParentPictureTag(imgEle) && checkIfImageHasSiblingSourceTag(imgEle)) {
     return imgEle.previousElementSibling.srcset || imgEle.nextElementSibling.srcset;
   }
-  return '';
+  return imgEle.src;
 };
 
 export const getAllImgNodesInPage = () => {
