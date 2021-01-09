@@ -1,3 +1,4 @@
+// TODO: Add Unit Tests
 export const getImgsWithAltTag = (imgEle) => {
   return imgEle.getAttribute('alt');
 };
