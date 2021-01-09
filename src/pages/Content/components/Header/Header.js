@@ -9,14 +9,16 @@ const Header = ({
   onRefresh,
   onMove,
   onClose,
+  onFilterChange,
   noOfImgsWithAltTag,
-  noOfImgsWithoutAltTag
+  noOfImgsWithoutAltTag,
+  selectedFilterButton
 }) => {
   return (
     <div className="header">
       <Toolbar onRefresh={onRefresh} onClose={onClose} onMove={onMove} />
       <div className="app-title">Check Missing Alt Tags</div>
-      <FilterButtons noOfImgsWithAltTag={noOfImgsWithAltTag} noOfImgsWithoutAltTag={noOfImgsWithoutAltTag} />
+      <FilterButtons selectedFilterButton={selectedFilterButton} onFilterChange={onFilterChange} noOfImgsWithAltTag={noOfImgsWithAltTag} noOfImgsWithoutAltTag={noOfImgsWithoutAltTag} />
     </div>
   );
 };

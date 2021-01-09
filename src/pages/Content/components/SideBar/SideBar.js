@@ -14,9 +14,7 @@ import { unmountApp } from '../../modules/index';
 
 const SideBar = () => {
   const [images, setImages] = useState([]);
-  console.log('rendering sideBar >>>>>>>>>>>>>>>');
-
-
+  const [selectedFilterButton, setSelectedFilterButton] = useState('WITHOUT_ALT');
 
   const updateImageList = () => {
     const imageEles = getAllImgNodesInPage();
@@ -36,6 +34,14 @@ const SideBar = () => {
     unmountApp(); 
   };
 
+  const onFilterChange = (filterType) => {
+    if(filterType === 'WITHOUT_ALT') {
+      setSelectedFilterButton('WITHOUT_ALT');
+    } else if(filterType === 'WITH_ALT') {
+      setSelectedFilterButton('WITH_ALT');
+    }
+  };
+
   const imgsWithAltTag = images.filter(getImgsWithAltTag) || [];
   const imgsWithoutAltTag = images.filter(getImgsWithoutAltTag) || [];
 
@@ -47,8 +53,12 @@ const SideBar = () => {
         onMove={onMove}
         noOfImgsWithAltTag={imgsWithAltTag.length}
         noOfImgsWithoutAltTag={imgsWithoutAltTag.length}
+        onFilterChange={onFilterChange}
+        selectedFilterButton={selectedFilterButton}
       />
-      <ImageList images={imgsWithoutAltTag} />
+      <div className="imgList-wrapper">
+        <ImageList images={selectedFilterButton === 'WITHOUT_ALT' ? imgsWithoutAltTag : imgsWithAltTag} />
+      </div>
     </div>
   );
 };
