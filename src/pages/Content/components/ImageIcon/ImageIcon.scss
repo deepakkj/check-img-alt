@@ -1,6 +1,6 @@
 .img-overview-div {
-  margin: 0 auto;
-  display: block;
+  // margin: 0 auto;
+  // display: block;
   width: 80px;
   height: 80px;
   overflow: hidden;
@@ -8,6 +8,7 @@
   background-color: #f7f7f7;
   box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  flex-shrink: 0;
   .img-overview {
     cursor: pointer;
     object-fit: contain;

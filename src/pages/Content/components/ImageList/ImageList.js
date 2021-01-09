@@ -9,6 +9,11 @@ const ImageList = ({ images }) => {
       {images.map((image, index) => (
         <li className="div-img-wrapper" key={index}>
           <ImageIcon key={index} imageEle={image} />
+          {
+            image.getAttribute('alt') && <div className="alt-text-wrapper">
+              <p><span>Alt Text:</span>&nbsp;{image.getAttribute('alt')}</p>
+              </div>
+          }
         </li>
       ))}
     </ul>

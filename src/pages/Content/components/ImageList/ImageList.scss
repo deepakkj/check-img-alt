@@ -8,12 +8,26 @@
   /* background-color: RGBA(240, 240, 240, 0.8); */
   border-radius: 10px;
   .div-img-wrapper {
+    display: flex;
     flex-grow: 1;
     flex-shrink: 0;
-    flex-basis: 50%;
+    // flex-basis: 50%;
     width: 100%;
     padding: 10px;
     margin: 0;
     list-style: none;
+    .alt-text-wrapper {
+      width: 100%;
+      margin-left: 10px;
+      p {
+        font-size: 14px;
+        line-height: 20px;
+        text-align: left;
+        color: inherit;
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }

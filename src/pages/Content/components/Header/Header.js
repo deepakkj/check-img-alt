@@ -17,7 +17,7 @@ const Header = ({
   return (
     <div className="header">
       <Toolbar onRefresh={onRefresh} onClose={onClose} onMove={onMove} />
-      <div className="app-title">Check Missing Alt Tags</div>
+      <div className="app-title">Check Missing Alt Text</div>
       <FilterButtons selectedFilterButton={selectedFilterButton} onFilterChange={onFilterChange} noOfImgsWithAltTag={noOfImgsWithAltTag} noOfImgsWithoutAltTag={noOfImgsWithoutAltTag} />
     </div>
   );
