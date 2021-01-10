@@ -4,7 +4,6 @@ import Toolbar from '../Toolbar/Toolbar';
 import FilterButtons from '../FilterButtons/FilterButtons';
 import './Header.scss';
 
-
 const Header = ({
   onRefresh,
   onMove,
@@ -12,13 +11,24 @@ const Header = ({
   onFilterChange,
   noOfImgsWithAltTag,
   noOfImgsWithoutAltTag,
-  selectedFilterButton
+  selectedFilterButton,
 }) => {
   return (
     <div className="header">
       <Toolbar onRefresh={onRefresh} onClose={onClose} onMove={onMove} />
-      <div className="app-title">Check Missing Alt Text</div>
-      <FilterButtons selectedFilterButton={selectedFilterButton} onFilterChange={onFilterChange} noOfImgsWithAltTag={noOfImgsWithAltTag} noOfImgsWithoutAltTag={noOfImgsWithoutAltTag} />
+      <div className="title-bar">
+        <div className="app-logo-wrapper">
+        <div className="app-logo" />
+        <div className="app-name">IMPROVE ALT</div>
+        </div>
+        <div className="app-title">Check Missing Alt Text in Images for a Page</div>
+      </div>
+      <FilterButtons
+        selectedFilterButton={selectedFilterButton}
+        onFilterChange={onFilterChange}
+        noOfImgsWithAltTag={noOfImgsWithAltTag}
+        noOfImgsWithoutAltTag={noOfImgsWithoutAltTag}
+      />
     </div>
   );
 };
