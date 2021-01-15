@@ -8,7 +8,7 @@
     line-height: 14px;
     box-sizing: border-box;
     letter-spacing: normal;
-    color: #47525E;
+    color: #293038;
     background-color: #F2F2F2;
     border: 2px solid #ffffff;
     border-radius: 10px;
@@ -17,16 +17,36 @@
     box-shadow: none;
     margin: 0;
     padding: 10px;
+    cursor: pointer;
+    &.active {
+      background-color: #7566cc;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      &:hover {
+        background-color: #7566cc;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+        outline: none;
+        box-shadow: none;
+      }
+      &:focus {
+        background-color: #7566cc;
+        color: #ffffff;
+        outline: none;
+        box-shadow: none;
+      }
+    }
     &:hover {
-      background-color: inherit;
-      color: inherit;
-      border: none;
+      background-color: #F2F2F2;
+      color: #293038;
+      border: 2px solid #ffffff;
       outline: none;
       box-shadow: none;
     }
     &:focus {
-      background-color: inherit;
-      border: none;
+      background-color: #F2F2F2;
+      color: #293038;
+      border: 2px solid #ffffff;
       outline: none;
       box-shadow: none;
     }
@@ -37,10 +57,6 @@
       font-size: 20px;
       line-height: 22px;
       color: inherit;
-    }
-    &.active {
-      background-color: #7566cc;
-      color: #ffffff;
     }
   }
 }

@@ -10,12 +10,27 @@
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
   background-color: rgba(255,255,255,0.4);
+  // background: linear-gradient(147deg, rgba(249,15,216,1) 0%, rgba(245,67,119,1) 26%, rgba(252,28,28,1) 50%, rgba(255,195,13,1) 75%, rgba(114,251,89,1) 100%);
   backdrop-filter: saturate(180%) blur(20px);
   transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1);
   transition-property: background-color, backdrop-filter;
   .imgList-wrapper {
+    position: relative;
     margin-top: 10px;
     max-height: calc(100vh - 150px);
     overflow: auto;
+    padding-bottom: 30px;
   }
+}
+
+.refresh-text {
+  padding: 80px 10px;
+  text-align: center;
+  margin: 0;
+  background: #fff;
+  border-radius: 10px;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 24px;
+  color: inherit;
 }

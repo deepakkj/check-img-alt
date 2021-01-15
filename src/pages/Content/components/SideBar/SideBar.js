@@ -3,18 +3,21 @@ import './SideBar.scss';
 
 import Header from '../Header/Header';
 import ImageList from '../ImageList/ImageList';
+import AllSet from '../AllSet/AllSet';
 
 import {
   getImgsWithAltTag,
   getImgsWithoutAltTag,
-  getAllImgNodesInPage
+  getAllImgNodesInPage,
 } from '../../utils';
 
 import { unmountApp } from '../../modules/index';
 
 const SideBar = () => {
   const [images, setImages] = useState([]);
-  const [selectedFilterButton, setSelectedFilterButton] = useState('WITHOUT_ALT');
+  const [selectedFilterButton, setSelectedFilterButton] = useState(
+    'WITHOUT_ALT'
+  );
 
   const updateImageList = () => {
     const imageEles = getAllImgNodesInPage();
@@ -31,19 +34,37 @@ const SideBar = () => {
 
   const onClose = (e) => {
     e.stopPropagation();
-    unmountApp(); 
+    unmountApp();
   };
 
   const onFilterChange = (filterType) => {
-    if(filterType === 'WITHOUT_ALT') {
+    if (filterType === 'WITHOUT_ALT') {
       setSelectedFilterButton('WITHOUT_ALT');
-    } else if(filterType === 'WITH_ALT') {
+    } else if (filterType === 'WITH_ALT') {
       setSelectedFilterButton('WITH_ALT');
     }
   };
 
   const imgsWithAltTag = images.filter(getImgsWithAltTag) || [];
   const imgsWithoutAltTag = images.filter(getImgsWithoutAltTag) || [];
+  
+  const renderImageList = () => {
+    if (imgsWithoutAltTag.length === 0 && imgsWithAltTag.length === 0) {
+      return (<div className="refresh-text">Refresh to see results</div>);
+    } else if (imgsWithoutAltTag.length === 0 && selectedFilterButton === 'WITHOUT_ALT') {
+      return (<AllSet />);
+    } else {
+      return (
+        <ImageList
+        images={
+          selectedFilterButton === 'WITHOUT_ALT'
+            ? imgsWithoutAltTag
+            : imgsWithAltTag
+        }
+      />
+      );
+    }
+  };
 
   return (
     <div className="sideBar">
@@ -57,7 +78,7 @@ const SideBar = () => {
         selectedFilterButton={selectedFilterButton}
       />
       <div className="imgList-wrapper">
-        <ImageList images={selectedFilterButton === 'WITHOUT_ALT' ? imgsWithoutAltTag : imgsWithAltTag} />
+        {renderImageList()}
       </div>
     </div>
   );

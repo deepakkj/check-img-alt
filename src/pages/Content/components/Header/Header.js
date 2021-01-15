@@ -21,7 +21,7 @@ const Header = ({
         <div className="app-logo" />
         <div className="app-name">IMPROVE ALT</div>
         </div>
-        <div className="app-title">Check Missing Alt Text in Images for a Page</div>
+        <div className="app-title">Check Missing Alt Text in Images of a Page</div>
       </div>
       <FilterButtons
         selectedFilterButton={selectedFilterButton}
