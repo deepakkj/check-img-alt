@@ -1,4 +1,3 @@
-import { printLine } from './modules/print';
 import { mountApp, unmountApp } from './modules/index';
 
 console.log('Content script works!');
@@ -18,4 +17,3 @@ const receivefunc = (mssg, sender, sendResponse) => {
 
 chrome.runtime.onMessage.addListener(receivefunc);
 
-printLine("Using the 'printLine' function from the Print Module");

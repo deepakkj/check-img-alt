@@ -1,7 +1,4 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Newtab from './Newtab';
-import './index.css';
-
-render(<Newtab />, window.document.querySelector('#app-container'));
+render(<div>This is a NewTab Page</div>, window.document.querySelector('#app-container'));

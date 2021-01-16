@@ -1,10 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Options from './Options';
-import './index.css';
-
 render(
-  <Options title={'settings'} />,
+  <div>This is the Options component</div>,
   window.document.querySelector('#app-container')
 );
