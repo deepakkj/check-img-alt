@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import './ImageList.scss';
 import ImageIcon from '../ImageIcon/ImageIcon';
 
-const ImageList = ({ images }) => {
+const ImageList = ({ images, showAltButton }) => {
   const [showNotification, setShowNotification] = useState(false);
   const handleGetSuggestions = () => {
     setShowNotification(true);
@@ -12,7 +12,9 @@ const ImageList = ({ images }) => {
   };
   return (
     <Fragment>
-      {showNotification && <div className="notification">This feature is coming soon!</div>}
+      {showNotification && (
+        <div className="notification">This feature is coming soon!</div>
+      )}
       <ul className="imgList">
         {images.map((image, index) => (
           <li className="div-img-wrapper" key={index}>
@@ -23,9 +25,14 @@ const ImageList = ({ images }) => {
                   <span>Alt Text:</span>&nbsp;{image.getAttribute('alt')}
                 </p>
               )}
-              <button className="btn-getSuggestions" onClick={handleGetSuggestions}>
-                Alt Text Suggestions
-              </button>
+              {showAltButton && (
+                <button
+                  className="btn-getSuggestions"
+                  onClick={handleGetSuggestions}
+                >
+                  Alt Text Suggestions
+                </button>
+              )}
             </div>
           </li>
         ))}

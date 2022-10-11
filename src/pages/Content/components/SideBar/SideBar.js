@@ -47,21 +47,29 @@ const SideBar = () => {
 
   const imgsWithAltTag = images.filter(getImgsWithAltTag) || [];
   const imgsWithoutAltTag = images.filter(getImgsWithoutAltTag) || [];
-  
+
   const renderImageList = () => {
     if (imgsWithoutAltTag.length === 0 && imgsWithAltTag.length === 0) {
-      return (<div className="refresh-text">Refresh to see results</div>);
-    } else if (imgsWithoutAltTag.length === 0 && selectedFilterButton === 'WITHOUT_ALT') {
-      return (<AllSet />);
+      return (
+        <div className="refresh-text">
+          Click refresh button above to see results
+        </div>
+      );
+    } else if (
+      imgsWithoutAltTag.length === 0 &&
+      selectedFilterButton === 'WITHOUT_ALT'
+    ) {
+      return <AllSet />;
     } else {
       return (
         <ImageList
-        images={
-          selectedFilterButton === 'WITHOUT_ALT'
-            ? imgsWithoutAltTag
-            : imgsWithAltTag
-        }
-      />
+          showAltButton={selectedFilterButton === 'WITHOUT_ALT'}
+          images={
+            selectedFilterButton === 'WITHOUT_ALT'
+              ? imgsWithoutAltTag
+              : imgsWithAltTag
+          }
+        />
       );
     }
   };
@@ -77,9 +85,7 @@ const SideBar = () => {
         onFilterChange={onFilterChange}
         selectedFilterButton={selectedFilterButton}
       />
-      <div className="imgList-wrapper">
-        {renderImageList()}
-      </div>
+      <div className="imgList-wrapper">{renderImageList()}</div>
     </div>
   );
 };
