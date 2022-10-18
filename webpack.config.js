@@ -2,10 +2,10 @@ var webpack = require('webpack'),
   path = require('path'),
   fileSystem = require('fs-extra'),
   env = require('./utils/env'),
-  { CleanWebpackPlugin } = require('clean-webpack-plugin'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   TerserPlugin = require('terser-webpack-plugin');
+var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 
@@ -41,13 +41,15 @@ var options = {
     popup: path.join(__dirname, 'src', 'pages', 'Popup', 'index.jsx'),
     background: path.join(__dirname, 'src', 'pages', 'Background', 'index.js'),
     contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.js'),
+    devtools: path.join(__dirname, 'src', 'pages', 'Devtools', 'index.js'),
   },
   chromeExtensionBoilerplate: {
-    notHotReload: ['contentScript'],
+    notHotReload: ['background', 'contentScript', 'devtools'],
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
     filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    clean: true,
     publicPath: ASSET_PATH,
   },
   module: {
@@ -73,11 +75,12 @@ var options = {
       },
       {
         test: new RegExp('.(' + fileExtensions.join('|') + ')$'),
+        // type: 'asset/resource',
+        // exclude: /node_modules/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
         },
-        exclude: /node_modules/,
       },
       {
         test: /\.html$/,
@@ -106,12 +109,8 @@ var options = {
       .concat(['.js', '.jsx', '.ts', '.tsx', '.css']),
   },
   plugins: [
+    new CleanWebpackPlugin({ verbose: false }),
     new webpack.ProgressPlugin(),
-    // clean the build folder
-    new CleanWebpackPlugin({
-      verbose: true,
-      cleanStaleWebpackAssets: true,
-    }),
     // expose and write the allowed env vars on the compiled bundle
     new webpack.EnvironmentPlugin(['NODE_ENV']),
     new CopyWebpackPlugin({
@@ -137,6 +136,24 @@ var options = {
       patterns: [
         {
           from: 'src/pages/Content/content.styles.css',
+          to: path.join(__dirname, 'build'),
+          force: true,
+        },
+      ],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/assets/img/icon-128.png',
+          to: path.join(__dirname, 'build'),
+          force: true,
+        },
+      ],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'src/assets/img/icon-32.png',
           to: path.join(__dirname, 'build'),
           force: true,
         },
@@ -179,7 +196,7 @@ var options = {
 };
 
 if (env.NODE_ENV === 'development') {
-  options.devtool = 'eval-cheap-module-source-map';
+  options.devtool = 'cheap-module-source-map';
 } else {
   options.optimization = {
     minimize: true,
